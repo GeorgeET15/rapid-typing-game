@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -57,6 +56,7 @@ const Home = ({ isLoggedIn }) => {
                 </div>
               </>
             )}
+
             {isLoggedIn && (
               <div>
                 <button
@@ -78,7 +78,7 @@ const Home = ({ isLoggedIn }) => {
         <p>
           Made with ❤️ in Kochi |{" "}
           <a
-            href="https://github.com/GeorgeET15/rapid-typing-game" // Replace with your GitHub repo URL
+            href="https://github.com/GeorgeET15/rapid-typing-game"
             target="_blank"
             rel="noopener noreferrer"
             className="text-pink-400 hover:text-pink-300 transition-all"

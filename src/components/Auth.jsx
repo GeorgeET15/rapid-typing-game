@@ -1,4 +1,3 @@
-// src/components/Auth.jsx
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -34,6 +33,7 @@ const Auth = ({ setUser, setIsLoggedIn, isLoggedIn }) => {
       }
       const newUser = { username, password, highScore: 0 };
       localStorage.setItem("user", JSON.stringify(newUser));
+      localStorage.setItem("loggedin", "true");
       setUser(newUser);
       setIsLoggedIn(true);
       navigate("/dashboard");
@@ -44,6 +44,7 @@ const Auth = ({ setUser, setIsLoggedIn, isLoggedIn }) => {
         storedUser.username === username &&
         storedUser.password === password
       ) {
+        localStorage.setItem("loggedin", "true");
         setUser(storedUser);
         setIsLoggedIn(true);
         navigate("/dashboard");
