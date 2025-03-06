@@ -125,7 +125,7 @@ const TypingGame = ({ user, setUser, setIsLoggedIn, isLoggedIn }) => {
     setUser(null);
     setIsLoggedIn(false);
     localStorage.removeItem("user");
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
