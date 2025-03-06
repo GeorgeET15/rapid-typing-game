@@ -1,3 +1,4 @@
+// src/components/TypingGame.jsx
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import wordSets from "../data.json";
@@ -15,6 +16,7 @@ const TypingGame = ({ user, setUser, setIsLoggedIn, isLoggedIn }) => {
   const inputRef = useRef(null);
   const navigate = useNavigate();
 
+  // Corrected audio file paths
   const clickSound = new Audio("/sounds/click.mp3");
   const correctSound = new Audio("/sounds/correct.mp3");
   const gameOverSound = new Audio("/sounds/game-over.mp3");
@@ -117,16 +119,14 @@ const TypingGame = ({ user, setUser, setIsLoggedIn, isLoggedIn }) => {
   };
 
   const handleLogout = () => {
-    new Audio("/sounds/click.mp3").play();
+    clickSound
+      .play()
+      .catch((error) => console.error("Click sound failed:", error));
     setUser(null);
     setIsLoggedIn(false);
-    localStorage.setItem("loggedin", "false");
-    navigate("/", { replace: true });
+    localStorage.removeItem("user");
+    navigate("/login");
   };
-
-  if (!isLoggedIn) {
-    return null;
-  }
 
   useEffect(() => {
     if (!isPlaying) {
@@ -171,7 +171,7 @@ const TypingGame = ({ user, setUser, setIsLoggedIn, isLoggedIn }) => {
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-5xl font-extrabold text-cyan-400 tracking-wide">
-            TypeBlitz
+            TypeBlitz {/* Updated name */}
           </h1>
           <div className="flex items-center space-x-4">
             {isLoggedIn && user ? (

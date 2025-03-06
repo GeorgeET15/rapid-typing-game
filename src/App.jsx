@@ -1,3 +1,4 @@
+// src/App.jsx
 import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -15,15 +16,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const loggedInStatus = localStorage.getItem("loggedin") === "true";
     const storedUser = localStorage.getItem("user");
-
-    setIsLoggedIn(loggedInStatus);
-    setUser(loggedInStatus && storedUser ? JSON.parse(storedUser) : null);
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsLoggedIn(true);
+    }
   }, []);
 
   const PrivateRoute = ({ children }) => {
-    return isLoggedIn ? children : <Navigate to="/" />;
+    return isLoggedIn ? children : <Navigate to="/login" />;
   };
 
   return (

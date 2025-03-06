@@ -1,3 +1,4 @@
+// src/components/Dashboard.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,12 +9,12 @@ const Dashboard = ({ user, setUser, setIsLoggedIn, isLoggedIn }) => {
     new Audio("/sounds/click.mp3").play();
     setUser(null);
     setIsLoggedIn(false);
-    localStorage.setItem("loggedin", "false");
-    navigate("/", { replace: true });
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   if (!isLoggedIn) {
-    return null;
+    return <Navigate to="/login" />;
   }
 
   return (
